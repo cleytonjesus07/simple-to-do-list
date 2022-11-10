@@ -30,17 +30,9 @@ body {
 }
 
 .containerInput {
-    
     display: flex;
-    opacity: .5;
     transition: opacity ease 300ms;
 }
-
-.containerInput:hover {
-    opacity: 1;
-}
-
-
 
 .containerInput button {
     margin: 0 1em;
@@ -54,7 +46,7 @@ body {
     transition: opacity ease 300ms;
 }
 
-.containerInput button:disabled{
+.containerInput button:disabled {
     background-color: rgb(255, 129, 129);
     color: red;
     border: 1px solid red;
@@ -72,6 +64,8 @@ body {
     border: 1px solid;
     outline: none;
 }
+
+
 
 .tasksList {
     display: block;
@@ -119,7 +113,7 @@ body {
     letter-spacing: .4px;
 }
 
-#timestamp{
+#timestamp {
     flex: 1;
     font-size: .7em;
     white-space: nowrap;
@@ -140,7 +134,7 @@ body {
     opacity: 1;
 }
 
-.info{
+.info {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -153,14 +147,14 @@ body {
     border-radius: 1em;
 }
 
-.removeContainer{
+.removeContainer {
     display: flex;
     justify-content: end;
     width: 100%;
     padding: 1em 0;
 }
 
-.removeContainer button{
+.removeContainer button {
     background-color: rgb(255, 129, 129);
     border: none;
     border-radius: 1em;
@@ -171,8 +165,7 @@ body {
     cursor: pointer;
 }
 
-.removeContainer button:hover{
+.removeContainer button:hover {
     opacity: 1;
-    transition:  ease 300ms;
+    transition: ease 300ms;
 }
-
