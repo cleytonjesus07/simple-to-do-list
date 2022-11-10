@@ -7,3 +7,5 @@
 <img src="./empty.jpg">
 <span>Com tarefas registradas:</span>
 <img src="./fill.jpg">
+
+<a href="https://cleytonjesus07.github.io/simple-to-do-list/">Link para o projeto</a>
