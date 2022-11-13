@@ -5,12 +5,15 @@ const DELETEALL_BUTTON = document.querySelector(".removeContainer > button");
 let id = 0;
 let tasks = [];
 
+window.addEventListener("keypress", (e) => (e.key === "Enter") && addTask());
+
 ADDTASK_BUTTON.setAttribute("disabled", true);
 DELETEALL_BUTTON.onclick = () => deleteAllTasks(true);
 INPUT.onkeyup = (e) => !e.target.value.length ? ADDTASK_BUTTON.setAttribute("disabled", true) : ADDTASK_BUTTON.removeAttribute("disabled");
+ADDTASK_BUTTON.onclick = () => addTask();
 
 
-ADDTASK_BUTTON.onclick = () => {
+function addTask() {
     const DATE = new Date();
     if (INPUT.value.length > 0) {
         tasks.push({
@@ -27,17 +30,18 @@ ADDTASK_BUTTON.onclick = () => {
     }
     deleteAllTasks();
     fillTasksList();
+    INPUT.value = "";
+    return;
 }
 
-function deleteAllTasks(forever) {
-    (!forever) && Array.from(TASKLIST.children).forEach((child) => child.remove());
-
-    if (forever && confirm("Você está prestes a excluir todas as tarefas registradas, deseja continuar?")) {
-        tasks.length = 0;
-        Array.from(TASKLIST.children).forEach((child) => child.remove());
+function deleteTask(el, id) {
+    let taskDescription = el.parentNode.children[1].innerText;
+    if (confirm(`Deseja excluir a tarefa: ${taskDescription}`)) {
+        tasks = tasks.filter((task) => task.id !== id);
+        deleteAllTasks();
         fillTasksList();
-        return;
     }
+    return;
 }
 
 function fillTasksList() {
@@ -57,7 +61,7 @@ function fillTasksList() {
                             <input onchange="marked(${id})" type="checkbox" ${done && 'checked'}/>
                             <span>${desc}</span>
                             <span id='timestamp'>${getTime(hours, minutes, seconds)} - (${convertDay(day)})</span>
-                            <button onClick="deleteTask(${id})">🗑️</button>
+                            <button onClick="deleteTask(this,${id})">🗑️</button>
                         </div>
                     </li>
                     `
@@ -69,6 +73,17 @@ function fillTasksList() {
     return;
 }
 
+function deleteAllTasks(forever) {
+    (!forever) && Array.from(TASKLIST.children).forEach((child) => child.remove());
+
+    if (forever && confirm("Você está prestes a excluir todas as tarefas registradas, deseja continuar?")) {
+        tasks.length = 0;
+        Array.from(TASKLIST.children).forEach((child) => child.remove());
+        fillTasksList();
+        return;
+    }
+}
+
 function marked(id) {
     const CHECKED = event.target.checked;
     tasks.map(task => {
@@ -78,15 +93,8 @@ function marked(id) {
     })
 }
 
-
 function getTime(hours, minutes, seconds) {
     return `${hours < 10 ? '0' + hours : hours} : ${minutes < 10 ? '0' + minutes : minutes} : ${(seconds < 10) ? '0' + seconds : seconds}`;
-}
-
-function deleteTask(id) {
-    tasks = tasks.filter((task) => task.id !== id);
-    deleteAllTasks();
-    fillTasksList();
 }
 
 function convertDay(day) {
@@ -110,4 +118,6 @@ function convertDay(day) {
     }
 }
 
+
+/* Start */
 fillTasksList();
