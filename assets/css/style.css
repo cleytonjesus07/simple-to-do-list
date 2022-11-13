@@ -119,6 +119,12 @@ body {
     font-size: .8em;
     font-weight: 600;
     letter-spacing: .4px;
+    margin-right: 1em;
+    transition: padding ease 300ms;
+    outline: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: text;
 }
 
 #timestamp {

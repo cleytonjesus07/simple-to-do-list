@@ -59,7 +59,7 @@ function fillTasksList() {
                     <li id='${id}'>
                         <div class="task">
                             <input onchange="marked(${id})" type="checkbox" ${done && 'checked'}/>
-                            <span>${desc}</span>
+                            <span title="Clique em mim para me editar!" onClick='editTask(this,${id})'>${desc}</span>
                             <span id='timestamp'>${getTime(hours, minutes, seconds)} - (${convertDay(day)})</span>
                             <button onClick="deleteTask(this,${id})">🗑️</button>
                         </div>
@@ -71,6 +71,26 @@ function fillTasksList() {
         document.getElementsByClassName("info")[0].style.display = "flex";
     }
     return;
+}
+
+function editTask(el, id) {
+    el.contentEditable = true;
+    el.style.color = "#000";
+    el.style.backgroundColor = "#fff";
+    el.style.padding = "1em 0";
+    el.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            tasks.filter(task => {
+                if (task.id === id && el.innerText) {
+                    task.desc = el.innerText
+                }
+            })
+            el.style.color = "#fff";
+            el.style.backgroundColor = "transparent";
+            el.style.padding = "initial";
+        }
+    })
+
 }
 
 function deleteAllTasks(forever) {
