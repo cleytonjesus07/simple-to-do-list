@@ -29,12 +29,20 @@ body {
     box-shadow: 1px 1px 10px black;
 }
 
-.containerInput {
+.containerTop {
+    position: sticky;
+    top: 0;
+    background-color: #e1e1e1;
+    padding: 2em 0;
+    z-index: 1;
     display: flex;
+    flex-direction: column;
     transition: opacity ease 300ms;
 }
 
-.containerInput button {
+
+
+.containerTop .containerInput  button {
     margin: 0 1em;
     padding: 1em 2em;
     border-radius: 1em;
@@ -46,7 +54,7 @@ body {
     transition: opacity ease 300ms;
 }
 
-.containerInput button:disabled {
+.containerTop .containerInput button:disabled {
     background-color: rgb(255, 129, 129);
     color: red;
     border: 1px solid red;
@@ -54,11 +62,11 @@ body {
 }
 
 
-.containerInput button:hover {
+.containerTop .containerInput button:hover {
     opacity: 1;
 }
 
-.containerInput input {
+.containerTop .containerInput input {
     padding: 1em 2em;
     border-radius: 1em;
     border: 1px solid;
